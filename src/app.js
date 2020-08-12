@@ -1,9 +1,10 @@
 const path = require('path')
 const express= require('express');
+const hbs = require('hbs');
 
 const public_dir_path=path.join(__dirname,'../public');
-const view_dir_path=path.join(__dirname,'../Templates');
-
+const view_dir_path=path.join(__dirname,'../Templates/views');
+const partials_path=path.join(__dirname,'../Templates/partials');
 // const help_dir_path=path.join(__dirname,'../public/help');
 // const about_dir_path=path.join(__dirname,'../public/about.html');
 
@@ -11,7 +12,7 @@ const app=express()
 
 app.set('view engine','hbs');
 app.set('views',view_dir_path);
-
+hbs.registerPartials(partials_path);
 
 app.use(express.static(public_dir_path))
 
@@ -32,6 +33,21 @@ app.get('/about',(req,res)=>
 res.render('about',{title :'FAQ',desc:' balaji &  co'});
 })
 
+app.get('/weather',(req,res)=>{
+    res.render('weather',{name:'Chengalpatu',Temperature:'Raining'});
+})
+
+app.get('/help/*',(req,res)=>
+{
+    res.render('404',{error_message:'Sorry human... help page vanished from my brain'});
+})
+
+
+app.get('*',(req,res)=>{
+    res.render('404',{error_message:'No such page'});
+})
+
+
 // app.get('/',(req,res)=>{
 
 //     res.send('<h1>Home Page</h1>');
@@ -47,11 +63,8 @@ res.render('about',{title :'FAQ',desc:' balaji &  co'});
 //     res.send('<h1>About Page</h1>');
 // })
 
-app.get('/weather',(req,res)=>{
 
-    res.send([{name:'Chengalpatu',Temperature:'Raining'},{name:'Thiruvallur',Temperature:'Chill'}]);
-})
 
-app.listen(3000,()=>{
+app.listen(3000,()=>{   
     console.log("server is up and running");
 });

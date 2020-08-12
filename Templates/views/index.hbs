@@ -4,13 +4,20 @@
     <title>ASAP</title>   
     <link rel="icon" href="/img/icon.jpg">
     <link rel="stylesheet" href="/css/style.css"> 
-    <script src="/js/app.js"></Script>
     </head>
 
     <body>
-        <div class="main-content"> {{>header}}</div>
+        <div class="main-content"> {{>header}}
+<p>Use this website to get your weather data</p>
+       <form>
+           <input placeholder="">
+           <button> Search</button>
+           </form>
+
+        </div>
        
         {{>footer}}
+           <script src="/js/app.js"></Script>
     </body>
         
 </html>

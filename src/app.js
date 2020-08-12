@@ -1,6 +1,9 @@
 const path = require('path')
 const express= require('express');
 const hbs = require('hbs');
+const { request } = require('http');
+const geo_code = require('./utils/geo_code');
+const loc= require('./utils/lat_long');
 
 const public_dir_path=path.join(__dirname,'../public');
 const view_dir_path=path.join(__dirname,'../Templates/views');
@@ -34,7 +37,38 @@ res.render('about',{title :'FAQ',desc:' balaji &  co'});
 })
 
 app.get('/weather',(req,res)=>{
-    res.render('weather',{name:'Chengalpatu',Temperature:'Raining'});
+     
+    if(!req.query.search){
+        return res.send({ error:'Am i joke to you pleas give Address to search'});
+    }
+
+    geo_code(req.query.search,(error,{latitude,longitude,location_name}={})=>
+{
+  if (error)
+  {
+    return  res.send({error}); //console.log('Error ' + error);
+  } 
+
+loc(latitude,longitude,(error,fdata )=>
+{   
+    if (error)
+        {  return  res.send({error}); }   
+
+       res.send({searchterm:req.query.search,location_details:location_name,Forecast:fdata});
+})
+
+})
+
+})  
+
+app.get('/products',(req,res)=>{
+    
+    if(!req.query.search){
+         return res.send({ error:'Am i joke to you pleas give somthing to search'});
+     }
+
+    res.send({products:[]})
+
 })
 
 app.get('/help/*',(req,res)=>

@@ -4,10 +4,12 @@ const hbs = require('hbs');
 const { request } = require('http');
 const geo_code = require('./utils/geo_code');
 const loc= require('./utils/lat_long');
+const { prototype } = require('stream');
 
 const public_dir_path=path.join(__dirname,'../public');
 const view_dir_path=path.join(__dirname,'../Templates/views');
 const partials_path=path.join(__dirname,'../Templates/partials');
+const port=process.env.PORT || 3000
 // const help_dir_path=path.join(__dirname,'../public/help');
 // const about_dir_path=path.join(__dirname,'../public/about.html');
 
@@ -99,6 +101,6 @@ app.get('*',(req,res)=>{
 
 
 
-app.listen(3000,()=>{   
-    console.log("server is up and running");
+app.listen(port,()=>{   
+    console.log("server is up and running in the port: "+port);
 });

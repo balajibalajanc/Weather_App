@@ -16,7 +16,11 @@ const loc=(lat,long,callback)=>
         callback(body.error.info,undefined);
     }
     else{
-         callback(undefined,body.current.weather_descriptions[0] +" The current temperature is "+ body.current.temperature+" but it feels like "+body.current.feelslike);
+         callback(undefined,{ temperature_desc :body.current.weather_descriptions[0],
+             current_temp: body.current.temperature,
+              feelslike_temp: body.current.feelslike,
+            wind_speed: body.current.wind_speed,
+        humidty:body.current.humidty});
             // {desci:body.current.weather_descriptions[0],
             // temperature:body.current.temperature,
             // feelslike:body.current.feelslike});

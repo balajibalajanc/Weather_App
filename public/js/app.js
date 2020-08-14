@@ -4,8 +4,11 @@ const weatherform=document.querySelector('form');
 const searchform=document.querySelector('input');
 const message_1=document.querySelector('#msg_1');
 const message_2=document.querySelector('#msg_2');
+const message_3=document.querySelector('#msg_3');
+const message_4=document.querySelector('#msg_4');
+const message_5=document.querySelector('#msg_5');
 
-message_1.textContent="Output";
+
 
 weatherform.addEventListener('submit',(e)=>{
     e.preventDefault();
@@ -18,7 +21,11 @@ weatherform.addEventListener('submit',(e)=>{
            message_2.textContent= data.error;
         }   
         else{
-            message_2.textContent='Location you searched for :'+ data.location_details+' Temperature :'+data.Forecast;
+            message_1.textContent='Location you searched for : '+ data.location_details;
+            message_2.textContent= 'Temperature : '+data.temperature_desc;
+            message_3.textContent='Current Temperature is : '+data.current_temp+' but it feels like : '+data.feelslike_temp;
+            message_4.textContent='Humidty Percentage is : '+ data.humidty;
+            message_5.textContent='Wind speed is : ' + data.wind_speed;
 
         }
     })      

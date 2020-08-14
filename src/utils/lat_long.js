@@ -20,7 +20,7 @@ const loc=(lat,long,callback)=>
              current_temp: body.current.temperature,
               feelslike_temp: body.current.feelslike,
             wind_speed: body.current.wind_speed,
-        humidty:body.current.humidty});
+        humidity:body.current.humidity});
             // {desci:body.current.weather_descriptions[0],
             // temperature:body.current.temperature,
             // feelslike:body.current.feelslike});

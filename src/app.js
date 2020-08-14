@@ -51,13 +51,13 @@ app.get('/weather',(req,res)=>{
     return  res.send({error}); //console.log('Error ' + error);
   } 
 
-loc(latitude,longitude,(error,{temperature_desc,current_temp,feelslike_temp,wind_speed,humidty	}={} )=>
+loc(latitude,longitude,(error,{temperature_desc,current_temp,feelslike_temp,wind_speed,humidity	}={} )=>
 {   
     if (error)
         {  return  res.send({error}); }   
 
        res.send({searchterm:req.query.search,location_details:location_name,temperature_desc:temperature_desc,current_temp:current_temp,
-    feelslike_temp:feelslike_temp,wind_speed:wind_speed,humidty:humidty});
+    feelslike_temp:feelslike_temp,wind_speed:wind_speed,humidity:humidity});
 })
 
 })
